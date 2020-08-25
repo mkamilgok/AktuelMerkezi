@@ -25,8 +25,7 @@ public class Initializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Stream.of("Süt", "Yumurta", "Kaymak", "Çay").forEach(name -> a101Repository.save(new Product(name)));
-        a101Repository.findAll().forEach(System.out::println);
+
 
         String blogUrl = "https://www.a101.com.tr/haftanin-yildizlari/";
             Document doc = Jsoup.connect(blogUrl).get();
@@ -35,7 +34,7 @@ public class Initializer implements CommandLineRunner {
                 String name = element.getElementsByClass("name").text();
                 String price = element.getElementsByClass("current").text();
                 String link = "https://www.a101.com.tr" + element.getElementsByClass("name-price").attr("href");
-                String imgLink = element.getElementsByClass(" ls-is-cached lazyloaded").attr("src");
+                String imgLink = element.getElementsByAttribute("data-src").attr("data-src");
                 a101Repository.save(new Product(name, price, link, imgLink));
             });
 
