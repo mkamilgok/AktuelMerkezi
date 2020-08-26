@@ -18,21 +18,19 @@ public class Product {
     private String price;
     private String link;
     private String imgLink;
+    private String category;
     private String dateExplanation;
 
     public Product() {
     }
 
-    public Product(String name) {
-        this.name = name;
-    }
-
-    public Product(String name, String price, String link, String imgLink, String dateExplanation) {
+    public Product(String name, String price, String link, String imgLink, String category, String dateExplanation) {
         this.name = name;
         this.price = price;
         this.link = link;
         this.imgLink = imgLink;
         this.dateExplanation = dateExplanation;
+        this.category = category;
     }
 
     public long getId() {
@@ -77,6 +75,14 @@ public class Product {
 
     public void setDateExplanation(String dateExplanation) {
         this.dateExplanation = dateExplanation;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.example.aktuelmerkezi.controller;
 
 
 import com.example.aktuelmerkezi.model.Product;
-import com.example.aktuelmerkezi.repository.a101Repository.BestProductsOfWeekRepository;
 import com.example.aktuelmerkezi.service.A101Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,33 +12,32 @@ import java.util.List;
 @RequestMapping(value = "/api/a101")
 public class A101Controller {
 
-    private final BestProductsOfWeekRepository bestProductsOfWeekRepository;
     private final A101Service a101Service;
 
     @Autowired
-    public A101Controller(BestProductsOfWeekRepository bestProductsOfWeekRepository, A101Service a101Service){
-        this.bestProductsOfWeekRepository = bestProductsOfWeekRepository;
+    public A101Controller( A101Service a101Service){
         this.a101Service = a101Service;
     }
 
     @GetMapping
     public List<Product> getAllProducts(){
-        return a101Service.getBestProductsOfWeek();
+        //return a101Service.getBestProductsOfWeek();
+        return a101Service.getOnSaleProducts();
     }
 
     @GetMapping(path = "{id}")
     public Product getProduct(@PathVariable("id") long id){
-        return bestProductsOfWeekRepository.getOne(id);
+        return a101Service.getProduct(id);
     }
 
     @PostMapping
     public Product addProduct(@RequestBody Product product){
-        return bestProductsOfWeekRepository.save(product);
+        return a101Service.addNewProduct(product);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteEmployee(@PathVariable("id") long id) {
-        bestProductsOfWeekRepository.deleteById(id);
+    public void deleteProduct(@PathVariable("id") long id) {
+        a101Service.deleteProduct(id);
     }
 
 }
