@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/a101")
 public class A101Controller {
@@ -20,8 +21,14 @@ public class A101Controller {
     }
 
     @GetMapping
-    public List<Product> getAllProducts(){
-        //return a101Service.getBestProductsOfWeek();
+    //(value = "/bestOfTheWeek") ekle
+    public List<Product> getBestProductsOfWeek(){
+        return a101Service.getBestProductsOfWeek();
+
+    }
+
+    @GetMapping(value = "/onSale")
+    public List<Product> getOnSaleProducts(){
         return a101Service.getOnSaleProducts();
     }
 

@@ -27,23 +27,10 @@ public class Initializer implements CommandLineRunner {
         fetchProductsOfA101();
     }
 
-    private String[] getDatesOfA101(){
-        String brochuresUrl = "https://www.a101.com.tr/afisler";
-        Document doc = null;
-        try {
-            doc = Jsoup.connect(brochuresUrl).get();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String[] dates = new String[3];
-        dates[0] = doc.getElementsByAttributeValue("href", "/afisler-haftanin-yildizlari").select("span").text();
-        dates[1] = doc.getElementsByAttributeValue("href", "/afisler-aldin-aldin").select("span").text();
-        dates[2] = doc.getElementsByAttributeValue("href", "/afisler-aldin-aldin-2").select("span").text();
-
-        return dates;
+    private void fetchProductsOfA101() {
+        fetchOnSaleProducts();
+        fetchBestProductsOfWeekA101();
     }
-
 
     private void fetchOnSaleProducts() {
         String urlRoot = "https://www.a101.com.tr/aldin-aldin/?sorter=-price&page=";
@@ -69,7 +56,17 @@ public class Initializer implements CommandLineRunner {
         } while(doc.getElementsByClass("page-link js-pagination-next ").size() != 0);
     }
 
-    private void fetchBestProductsOfWeekA101(String dateExplanation) {
+    private void fetchBestProductsOfWeekA101() {
+        String brochuresUrl = "https://www.a101.com.tr/afisler";
+        Document docOfBrochures = null;
+        try {
+            docOfBrochures = Jsoup.connect(brochuresUrl).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String dateExplanation = docOfBrochures.getElementsByAttributeValue("href", "/afisler-haftanin-yildizlari").select("span").text();
+
+
         String url = "https://www.a101.com.tr/haftanin-yildizlari/";
         Document doc = null;
         try {
@@ -87,26 +84,6 @@ public class Initializer implements CommandLineRunner {
         });
     }
 
-    private void fetchNextWeekBrochureA101(String dateExplanation) {
 
-    }
-
-    private void fetchCurrentWeekBrochureA101(String dateExplanation) {
-    }
-
-    private void fetchProductsOfA101() {
-        String[] datesOfA101 = getDatesOfA101();
-
-        String dateOfBestProducts = datesOfA101[0];
-        fetchBestProductsOfWeekA101(dateOfBestProducts);
-
-        String dateOfNextWeek = datesOfA101[1];
-        fetchNextWeekBrochureA101(dateOfNextWeek);
-
-        String dateOfCurrentWeek = datesOfA101[2];
-        fetchCurrentWeekBrochureA101(dateOfCurrentWeek);
-
-        fetchOnSaleProducts();
-    }
 
 }
