@@ -1,6 +1,7 @@
 package com.example.aktuelmerkezi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +15,12 @@ public class Product {
     @Id
     @GeneratedValue
     private long id;
+    @NonNull
     private String name;
     private String price;
     private String link;
     private String imgLink;
+    @NonNull
     private String category;
     private String dateExplanation;
 

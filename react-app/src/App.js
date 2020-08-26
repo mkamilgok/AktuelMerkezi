@@ -15,19 +15,7 @@ function App() {
   })
 
   const removeItem = (id) => {
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify({"name":"Kamil"});
-
-      var requestOptions = {
-          method: 'DELETE',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow'
-      };
-
-      fetch("http://localhost:8080/api/a101/" + id, requestOptions)
+      fetch("http://localhost:8080/api/a101/" + id,{method: 'DELETE',})
           .then(response => response.text())
           .then(result => console.log(result))
           .catch(error => console.log('error', error));
@@ -83,7 +71,6 @@ function App() {
         <h2>{products[0] && products[0].dateExplanation}</h2>
         <ul>
           {products.map(product =>
-
                 <li>
                     <a href={product.link} key={product.id}>
                     <img src={product.imgLink} alt="foto" width="70px"/>
@@ -96,7 +83,6 @@ function App() {
                     </div>
 
                 </li>
-
           )}
         </ul>
       </div>

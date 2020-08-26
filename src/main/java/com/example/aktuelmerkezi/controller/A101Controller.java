@@ -24,10 +24,9 @@ public class A101Controller {
     //(value = "/bestOfTheWeek") ekle
     public List<Product> getBestProductsOfWeek(){
         return a101Service.getBestProductsOfWeek();
-
     }
 
-    @GetMapping(value = "/onSale")
+    @GetMapping(path = "/onSale")
     public List<Product> getOnSaleProducts(){
         return a101Service.getOnSaleProducts();
     }
@@ -40,6 +39,11 @@ public class A101Controller {
     @PostMapping
     public Product addProduct(@RequestBody Product product){
         return a101Service.addNewProduct(product);
+    }
+
+    @PutMapping
+    public Product updateProduct(@RequestBody Product product){
+        return a101Service.updateProduct(product);
     }
 
     @DeleteMapping(path = "{id}")
