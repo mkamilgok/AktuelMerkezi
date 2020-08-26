@@ -9,7 +9,7 @@ function App() {
   })
   return (
     <div className="App">
-
+        <h2>{products[0] && products[0].dateExplanation}</h2>
       <ul>
         {products.map(product =>
             <a href={product.link}>

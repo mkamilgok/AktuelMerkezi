@@ -18,6 +18,7 @@ public class Product {
     private String price;
     private String link;
     private String imgLink;
+    private String dateExplanation;
 
     public Product() {
     }
@@ -26,11 +27,12 @@ public class Product {
         this.name = name;
     }
 
-    public Product(String name, String price, String link, String imgLink) {
+    public Product(String name, String price, String link, String imgLink, String dateExplanation) {
         this.name = name;
         this.price = price;
         this.link = link;
         this.imgLink = imgLink;
+        this.dateExplanation = dateExplanation;
     }
 
     public long getId() {
@@ -67,6 +69,14 @@ public class Product {
 
     public void setImgLink(String imgLink) {
         this.imgLink = imgLink;
+    }
+
+    public String getDateExplanation() {
+        return dateExplanation;
+    }
+
+    public void setDateExplanation(String dateExplanation) {
+        this.dateExplanation = dateExplanation;
     }
 
     @Override
