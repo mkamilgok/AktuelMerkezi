@@ -86,17 +86,6 @@ public class Product {
     }
 
     @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", link='" + link + '\'' +
-                ", imgLink='" + imgLink + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -105,11 +94,26 @@ public class Product {
                 name.equals(product.name) &&
                 price.equals(product.price) &&
                 link.equals(product.link) &&
-                imgLink.equals(product.imgLink);
+                imgLink.equals(product.imgLink) &&
+                category.equals(product.category) &&
+                dateExplanation.equals(product.dateExplanation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, link, imgLink);
+        return Objects.hash(id, name, price, link, imgLink, category, dateExplanation);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price='" + price + '\'' +
+                ", link='" + link + '\'' +
+                ", imgLink='" + imgLink + '\'' +
+                ", category='" + category + '\'' +
+                ", dateExplanation='" + dateExplanation + '\'' +
+                '}';
     }
 }
