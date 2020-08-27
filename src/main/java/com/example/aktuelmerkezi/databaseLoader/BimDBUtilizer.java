@@ -34,7 +34,9 @@ public class BimDBUtilizer {
         productTemplates.addAll(doc.getElementsByClass("product col-xl-3 col-lg-3 col-md-4 col-sm-6  col-12"));
         productTemplates.addAll(doc.getElementsByClass("product col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 LoadGroup0"));
         productTemplates.forEach(element -> {
-            String name = element.getElementsByClass("title").text();
+            String name = element.getElementsByClass("subTitle").text().length() < 2
+                        ? element.getElementsByClass("title").text()
+                        : element.getElementsByClass("subTitle").text() + " - "  + element.getElementsByClass("title").text();
             String price = element.getElementsByClass("text quantify").text()
                             + element.getElementsByClass("number").text()
                             + element.getElementsByClass("curr").text();
