@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
 
     @Id
-    @GeneratedValue
-    private long id;
+    private UUID id;
     @NonNull
     private String name;
     private String price;
@@ -28,6 +28,7 @@ public class Product {
     }
 
     public Product(String name, String price, String link, String imgLink, String category, String dateExplanation) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.price = price;
         this.link = link;
@@ -36,7 +37,7 @@ public class Product {
         this.category = category;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -93,7 +94,7 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
+        return id.equals(product.id) &&
                 name.equals(product.name) &&
                 price.equals(product.price) &&
                 link.equals(product.link) &&

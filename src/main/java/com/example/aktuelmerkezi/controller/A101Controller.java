@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin
 @RestController
@@ -32,7 +33,7 @@ public class A101Controller {
     }
 
     @GetMapping(path = "{id}")
-    public Product getProduct(@PathVariable("id") long id){
+    public Product getProduct(@PathVariable("id") UUID id){
         return a101Service.getProduct(id);
     }
 
@@ -47,7 +48,7 @@ public class A101Controller {
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteProduct(@PathVariable("id") long id) {
+    public void deleteProduct(@PathVariable("id") UUID id) {
         a101Service.deleteProduct(id);
     }
 

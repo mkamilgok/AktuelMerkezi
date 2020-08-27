@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +33,7 @@ public class A101Service {
                 .collect(Collectors.toList());
     }
 
-    public Product getProduct(long id){
+    public Product getProduct(UUID id){
         return productRepository.getOne(id);
     }
 
@@ -41,10 +42,11 @@ public class A101Service {
     }
 
     public Product updateProduct(Product product){
+        productRepository.deleteById(product.getId());
         return productRepository.save(product);
     }
 
-    public void deleteProduct(long id){
+    public void deleteProduct(UUID id){
         productRepository.deleteById(id);
     }
 

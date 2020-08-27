@@ -20,7 +20,9 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        bimDBUtilizer.fetchProductsAndBrochuresOfBim();
         a101DBUtilizer.fetchProductsOfA101();
+        sokDBUtilizer.fetchBrochuresOfSok();
     }
 
 }
